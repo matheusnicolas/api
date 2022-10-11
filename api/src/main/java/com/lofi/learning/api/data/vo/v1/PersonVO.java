@@ -1,38 +1,39 @@
 package com.lofi.learning.api.data.vo.v1;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import org.springframework.hateoas.RepresentationModel;
 
 import java.io.Serializable;
 
 @JsonPropertyOrder({"id", "firstName", "lastName", "address", "gender"})
-public class PersonVO implements Serializable {
+public class PersonVO extends RepresentationModel<PersonVO> implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private Long id;
+    @JsonProperty("id")
+    private Long key;
     private String firstName;
     private String lastName;
     private String address;
     private String gender;
 
-    public PersonVO(Long id, String firstName, String lastName, String address, String gender) {
-        this.id = id;
+    public PersonVO(Long key, String firstName, String lastName, String address, String gender) {
+        this.key = key;
         this.firstName = firstName;
         this.lastName = lastName;
         this.address = address;
         this.gender = gender;
     }
 
-    public PersonVO() {
+    public PersonVO() {}
 
+    public Long getKey() {
+        return key;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+    public void setKey(Long key) {
+        this.key = key;
     }
 
     public String getFirstName() {
@@ -74,7 +75,7 @@ public class PersonVO implements Serializable {
 
         PersonVO personVO = (PersonVO) o;
 
-        if (getId() != null ? !getId().equals(personVO.getId()) : personVO.getId() != null) return false;
+        if (getKey() != null ? !getKey().equals(personVO.getKey()) : personVO.getKey() != null) return false;
         if (getFirstName() != null ? !getFirstName().equals(personVO.getFirstName()) : personVO.getFirstName() != null)
             return false;
         if (getLastName() != null ? !getLastName().equals(personVO.getLastName()) : personVO.getLastName() != null)
@@ -86,7 +87,7 @@ public class PersonVO implements Serializable {
 
     @Override
     public int hashCode() {
-        int result = getId() != null ? getId().hashCode() : 0;
+        int result = getKey() != null ? getKey().hashCode() : 0;
         result = 31 * result + (getFirstName() != null ? getFirstName().hashCode() : 0);
         result = 31 * result + (getLastName() != null ? getLastName().hashCode() : 0);
         result = 31 * result + (getAddress() != null ? getAddress().hashCode() : 0);

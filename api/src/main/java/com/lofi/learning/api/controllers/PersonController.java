@@ -20,7 +20,7 @@ public class PersonController {
     @PostMapping(
             consumes = { MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML },
             produces = { MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML })
-    public PersonVO create(@RequestBody PersonVO person) {
+    public PersonVO create(@RequestBody PersonVO person) throws Exception {
         return service.create(person);
     }
 
@@ -34,13 +34,13 @@ public class PersonController {
     @PutMapping(
             consumes = { MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML },
             produces = { MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML })
-    public PersonVO update(@RequestBody PersonVO person) {
+    public PersonVO update(@RequestBody PersonVO person) throws Exception {
         return service.update(person);
     }
 
     @GetMapping(
             produces = { MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML })
-    public List<PersonVO> findAll() {
+    public List<PersonVO> findAll() throws Exception {
         return service.findAll();
     }
 
