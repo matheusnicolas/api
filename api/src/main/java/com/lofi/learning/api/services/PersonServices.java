@@ -1,17 +1,21 @@
 package com.lofi.learning.api.services;
 
-import com.lofi.learning.api.model.Person;
+import com.lofi.learning.api.data.vo.v1.PersonVO;
+import com.lofi.learning.api.data.vo.v2.PersonVOV2;
+
 import java.util.List;
 
 public interface PersonServices {
 
-    public Person create(Person person);
+    public PersonVO create(PersonVO person);
+
+    public PersonVOV2 createV2(PersonVOV2 person);
 
     public void delete(Long id);
 
-    public Person update(Person person);
+    public PersonVO update(PersonVO person);
 
-    public List<Person> findAll();
+    public List<PersonVO> findAll();
 
-    public Person findById(Long id);
+    public PersonVO findById(Long id);
 }
