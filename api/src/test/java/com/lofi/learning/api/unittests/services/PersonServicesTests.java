@@ -5,7 +5,7 @@ import com.lofi.learning.api.exceptions.RequiredObjectIsNullException;
 import com.lofi.learning.api.mapper.MapStructMapper;
 import com.lofi.learning.api.model.Person;
 import com.lofi.learning.api.repositories.PersonRepository;
-import com.lofi.learning.api.services.PersonServicesImpl;
+import com.lofi.learning.api.services.person.PersonServicesImpl;
 import com.lofi.learning.api.unittests.mapper.MockPerson;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

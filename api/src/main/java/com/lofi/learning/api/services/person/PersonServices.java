@@ -1,4 +1,4 @@
-package com.lofi.learning.api.services;
+package com.lofi.learning.api.services.person;
 
 import com.lofi.learning.api.data.vo.v1.PersonVO;
 
@@ -8,11 +8,11 @@ public interface PersonServices {
 
     public PersonVO create(PersonVO person) throws Exception;
 
-    public void delete(Long id);
-
     public PersonVO update(PersonVO person) throws Exception;
 
     public List<PersonVO> findAll() throws Exception;
 
     public PersonVO findById(Long id) throws Exception;
+
+    public void delete(Long id);
 }

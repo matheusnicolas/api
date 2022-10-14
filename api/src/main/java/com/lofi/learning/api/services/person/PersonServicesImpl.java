@@ -1,12 +1,10 @@
-package com.lofi.learning.api.services;
+package com.lofi.learning.api.services.person;
 
-import com.lofi.learning.api.controllers.PersonController;
+import com.lofi.learning.api.controllers.person.PersonController;
 import com.lofi.learning.api.data.vo.v1.PersonVO;
-import com.lofi.learning.api.data.vo.v2.PersonVOV2;
 import com.lofi.learning.api.exceptions.RequiredObjectIsNullException;
 import com.lofi.learning.api.exceptions.ResourceNotFoundException;
 import com.lofi.learning.api.mapper.MapStructMapper;
-import com.lofi.learning.api.mapper.custom.PersonMapper;
 import com.lofi.learning.api.repositories.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -43,14 +41,6 @@ public class PersonServicesImpl implements PersonServices {
         return personVO;
     }
 
-    public void delete(Long id) {
-        logger.info("Deleting one person!");
-
-        var entity = repository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException(String.format("No records found for the id [%s]", id)));
-
-        repository.delete(entity);
-    }
 
     public PersonVO update(PersonVO person) throws Exception {
         logger.info("Updating one person!");
@@ -64,9 +54,7 @@ public class PersonServicesImpl implements PersonServices {
         entity.setGender(person.getGender());
 
         var personVO = mapper.personModelToPersonVO(repository.save(entity));
-
         personVO.add(linkTo(methodOn(PersonController.class).findById(personVO.getKey())).withSelfRel());
-
         return personVO;
     }
 
@@ -89,13 +77,22 @@ public class PersonServicesImpl implements PersonServices {
     public PersonVO findById(Long id) throws Exception {
         logger.info("Finding one person!");
 
-        var person = repository.findById(id)
+        var personEntity = repository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(String.format("No records found for the id [%s]", id)));
 
-        PersonVO personVO = mapper.personModelToPersonVO(person);
+        var personVO = mapper.personModelToPersonVO(personEntity);
 
         personVO.add(linkTo(methodOn(PersonController.class).findById(id)).withSelfRel());
 
         return personVO;
+    }
+
+    public void delete(Long id) {
+        logger.info("Deleting one person!");
+
+        var entity = repository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException(String.format("No records found for the id [%s]", id)));
+
+        repository.delete(entity);
     }
 }
