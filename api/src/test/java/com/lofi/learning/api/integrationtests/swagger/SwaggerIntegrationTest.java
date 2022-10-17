@@ -23,7 +23,7 @@ public class SwaggerIntegrationTest extends AbstractIntegrationTest {
                 .extract()
                 .body().asString();
 
-		Assertions.assertTrue(content.contains("Swagger UI"));
+        Assertions.assertTrue(content.contains("Swagger UI"));
     }
 
 }

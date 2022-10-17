@@ -21,6 +21,9 @@ import java.util.List;
 @Tag(name = "People", description = "Endpoint for Managing People")
 public interface PersonOperations {
 
+    @PostMapping(
+            consumes = {MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML},
+            produces = {MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML})
     @Operation(summary = "Adds a new Person",
             description = "Adds a new Person consuming a JSON, xml or YML",
             tags = {"People"}, responses = {
@@ -30,11 +33,11 @@ public interface PersonOperations {
             @ApiResponse(description = "Unauthorized", responseCode = "401", content = @Content),
             @ApiResponse(description = "Internal Error", responseCode = "500", content = @Content)
     })
-    @PostMapping(
-            consumes = {MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML},
-            produces = {MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML})
     public PersonVO create(@RequestBody PersonVO person) throws Exception;
 
+    @PutMapping(
+            consumes = {MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML},
+            produces = {MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML})
     @Operation(summary = "Updates a new Person",
             description = "Updates a Person consuming a JSON, xml or YML",
             tags = {"People"}, responses = {
@@ -45,11 +48,10 @@ public interface PersonOperations {
             @ApiResponse(description = "Not Found", responseCode = "404", content = @Content),
             @ApiResponse(description = "Internal Error", responseCode = "500", content = @Content)
     })
-    @PutMapping(
-            consumes = {MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML},
-            produces = {MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML})
     public PersonVO update(@RequestBody PersonVO person) throws Exception;
 
+    @GetMapping(
+            produces = {MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML})
     @Operation(summary = "Finds all people", description = "Finds all people",
             tags = {"People"}, responses = {
             @ApiResponse(description = "Success", responseCode = "200",
@@ -64,24 +66,22 @@ public interface PersonOperations {
             @ApiResponse(description = "Not Found", responseCode = "404", content = @Content),
             @ApiResponse(description = "Internal Error", responseCode = "500", content = @Content)
     })
-    @GetMapping(
-            produces = {MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML})
     public List<PersonVO> findAll() throws Exception;
 
+    @GetMapping(
+            value = "/{id}", produces = {MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML})
     @Operation(summary = "Finds a person", description = "Finds a person",
             tags = {"People"}, responses = {
             @ApiResponse(description = "Success", responseCode = "200",
                     content = {@Content(schema = @Schema(implementation = PersonVO.class))}),
-            @ApiResponse(description = "No Content", responseCode = "204", content = @Content),
+            @ApiResponse(description = "No Content", responseCode = "204", content = @Content ),
             @ApiResponse(description = "Bad Request", responseCode = "400", content = @Content),
             @ApiResponse(description = "Unauthorized", responseCode = "401", content = @Content),
             @ApiResponse(description = "Not Found", responseCode = "404", content = @Content),
-            @ApiResponse(description = "Internal Error", responseCode = "500", content = @Content)
-    })
-    @GetMapping(
-            value = "/{id}", produces = {MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML})
+            @ApiResponse(description = "Internal Error", responseCode = "500", content = @Content)})
     public PersonVO findById(@PathVariable(value = "id") Long id) throws Exception;
 
+    @DeleteMapping(value = "/{id}")
     @Operation(summary = "Deletes a person", description = "Deletes a person",
             tags = {"People"}, responses = {
             @ApiResponse(description = "No Content", responseCode = "204", content = {@Content}),
@@ -90,6 +90,5 @@ public interface PersonOperations {
             @ApiResponse(description = "Not Found", responseCode = "404", content = @Content),
             @ApiResponse(description = "Internal Error", responseCode = "500", content = @Content)
     })
-    @DeleteMapping(value = "/{id}")
     public ResponseEntity<?> delete(@PathVariable(value = "id") Long id);
 }
