@@ -3,6 +3,7 @@ package com.lofi.learning.api.unittests.mapper;
 import com.lofi.learning.api.data.vo.v1.PersonVO;
 import com.lofi.learning.api.mapper.MapStructMapper;
 import com.lofi.learning.api.model.Person;
+import com.lofi.learning.api.unittests.mock.MockPerson;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mapstruct.factory.Mappers;
@@ -11,7 +12,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class MapperStructTests {
+public class MapperStructTest {
 
     private MockPerson inputObject;
 

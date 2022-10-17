@@ -1,4 +1,4 @@
-package com.lofi.learning.api.unittests.mapper;
+package com.lofi.learning.api.unittests.mock;
 
 import com.lofi.learning.api.data.vo.v1.PersonVO;
 import com.lofi.learning.api.model.Person;

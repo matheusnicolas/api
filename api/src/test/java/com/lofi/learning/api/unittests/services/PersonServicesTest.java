@@ -6,7 +6,7 @@ import com.lofi.learning.api.mapper.MapStructMapper;
 import com.lofi.learning.api.model.Person;
 import com.lofi.learning.api.repositories.PersonRepository;
 import com.lofi.learning.api.services.person.PersonServicesImpl;
-import com.lofi.learning.api.unittests.mapper.MockPerson;
+import com.lofi.learning.api.unittests.mock.MockPerson;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -29,7 +29,7 @@ import static org.mockito.Mockito.when;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @ExtendWith(MockitoExtension.class)
-public class PersonServicesTests {
+public class PersonServicesTest {
 
     MockPerson input;
 
